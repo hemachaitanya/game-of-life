@@ -1,0 +1,13 @@
+---
+pool: 'Default'
+trigger:
+  - main
+steps:
+  - task: Maven@3
+    inputs:
+      mavenPOMFile: 'pom.xml'
+      goals: 'package'
+      publishJUnitResults: true
+      testResultsFiles: ''
+      mavenVersionOption: 'Default'
+      javaHomeOption: 1.08
