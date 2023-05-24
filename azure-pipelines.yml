@@ -10,4 +10,4 @@ steps:
       publishJUnitResults: true
       testResultsFiles: ''
       mavenVersionOption: 'Default'
-      javaHomeOption: 1.08
+      javaHomeOption: '1.08'
