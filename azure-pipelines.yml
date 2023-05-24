@@ -1,13 +1,9 @@
 ---
 pool: 'Default'
+
 trigger:
   - main
 steps:
-  - task: Maven@3
-    inputs:
-      mavenPOMFile: 'pom.xml'
-      goals: 'package'
-      publishJUnitResults: true
-      testResultsFiles: ''
-      mavenVersionOption: 'Default'
-      javaHomeOption: '1.08'
+  - script: 'mvn package'
+    displayName: 'gameoflife-mvn project'
+    workingDirectory: game-of-life
