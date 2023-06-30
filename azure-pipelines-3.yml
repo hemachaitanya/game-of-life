@@ -2,7 +2,7 @@
 trigger:
   - master
 jobs:
-  - job: "buil gol"
+  - job: "builgol"
     displayName: build maven package for gameoflife
     pool:
       name: Azure Pipelines
