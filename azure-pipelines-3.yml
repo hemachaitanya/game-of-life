@@ -2,7 +2,7 @@
 trigger:
   - master
 jobs:
-  - job: "buildgol"
+  - job: "buil gol"
     displayName: build maven package for gameoflife
     pool:
       name: Azure Pipelines
@@ -17,6 +17,17 @@ jobs:
         javaHomeOption: 'JDKVersion'
         jdkVersionOption: '1.8'
         mavenVersionOption: 'Default'
+    - task: CopyFiles@2
+      inputs:
+        Contents: '**/target/gameoflife.war'
+        TargetFolder: '$(build.artifactstagingdirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'GameOfLife artifacts'
+
+
+
 
 
    
