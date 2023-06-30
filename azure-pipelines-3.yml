@@ -1,0 +1,22 @@
+---
+trigger:
+  - master
+jobs:
+  - job: "buildgol"
+    displayName: build maven package for gameoflife
+    pool:
+      name: Azure Pipelines
+      vmImage: ubuntu-latest
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPOMFile: 'pom.xml'
+        goals: 'package'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.8'
+        mavenVersionOption: 'Default'
+
+
+   
