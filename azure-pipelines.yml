@@ -1,9 +1,16 @@
 ---
-pool: 'Default'
+
+pool: 
+ name: Azure Pipeline
+ vmImage: ubuntu-latest
 
 trigger:
   - main
 steps:
-  - script: 'mvn package'
-    displayName: 'gameoflife-mvn project'
-    workingDirectory: game-of-life
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: 'hema789 / gameoflife'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      
