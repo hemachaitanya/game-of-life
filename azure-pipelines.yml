@@ -7,10 +7,25 @@ pool:
 trigger:
   - main
 steps:
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'Docker Hub'
-      repository: 'hema789 / gameoflife'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
+- task: CopyFiles@2
+  inputs:
+    Contents: '**'
+    TargetFolder: '**/target/*.war'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'gol'
+    publishLocation: 'Container'
+
       
