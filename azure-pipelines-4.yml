@@ -1,0 +1,24 @@
+---
+pool:
+  name: Azure Pipelines
+  vmImage: ubuntu-latest
+trigger:
+  - master
+steps:
+  - task: Maven@3
+    inputs:
+      mavenPOMFile: 'pom.xml'
+      goals: 'package'
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+  - task: CopyFiles@2
+    inputs:
+       Contents: '**/target/*.war'
+       TargetFolder: $(build.artifactstagingdirectory)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'gol'
+      
+  
