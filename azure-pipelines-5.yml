@@ -8,7 +8,7 @@ variables:
   MAVENGOAL: package  
   MY_CONTENTS: '**/target/*.war'
   MY_ARTIFACTNAME: 'gol'
-  JDK_VERSION: '1.8'
+  
   
 steps:
   - task: Maven@3
@@ -17,7 +17,7 @@ steps:
       goals: $(MAVENGOAL)
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'jdkVersion'
-      jdkDirectory: $(JDK_VERSION)
+      jdkVersionOption: '1.8'
 
   - task: CopyFiles@2
     inputs:
