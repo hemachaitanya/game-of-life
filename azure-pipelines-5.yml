@@ -16,8 +16,8 @@ steps:
       mavenPOMFile: 'pom.xml'
       goals: $(MAVENGOAL)
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      javaHomeOption: 'Path'
-      jdkDirectory: '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
 
   - task: CopyFiles@2
     inputs:
