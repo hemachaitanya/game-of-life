@@ -23,5 +23,8 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'gol'
     publishLocation: 'Container'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '100'
 
       
