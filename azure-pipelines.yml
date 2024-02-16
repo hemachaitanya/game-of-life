@@ -12,8 +12,8 @@ steps:
     mavenPomFile: 'pom.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
+    javaHomeOption: 'Path'
+    jdkDirectory: '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
 - task: CopyFiles@2
   inputs:
     Contents: '**/target/*.war'
