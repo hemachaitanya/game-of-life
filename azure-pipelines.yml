@@ -1,19 +1,19 @@
 ---
 
 pool: 
- name: Azure Pipelines
+ name: Default
  vmImage: ubuntu-latest
 
 trigger:
   - main
 steps:
-- task: Maven@4
+- task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
+    javaHomeOption: 'Path'
+    jdkDirectory: '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
 - task: CopyFiles@2
   inputs:
     Contents: '**/target/*.war'
@@ -23,5 +23,8 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'gol'
     publishLocation: 'Container'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '100'
 
       
