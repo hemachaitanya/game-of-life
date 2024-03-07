@@ -13,8 +13,8 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     mavenVersionOption: 'Default'
-    javaHomeOption: 'Path'
-    jdkDirectory: '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
+    javaHomeOption: 'JDKVersion'
+    jdkDirectory: '1.8'
 - task: CopyFiles@2
   inputs:
     Contents: '**/target/*.war'
